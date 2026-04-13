@@ -27,8 +27,7 @@ public class DepartmentController {
 		this.departmentService = service;
 	}
 
-	@GetMapping(path="/departments", produces = "application/xml")
-	@ResponseBody()
+	@GetMapping("/departments")
 	public ResponseEntity<List<DepartmentDto>> getDepartments() {
 		List<DepartmentDto> departments = departmentService.getDepartments();
 		return ResponseEntity.ok(departments);
