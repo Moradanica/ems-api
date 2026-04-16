@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ems.dto.DepartmentDto;
 import com.ems.service.DepartmentService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/api")
 public class DepartmentController {
@@ -25,6 +28,16 @@ public class DepartmentController {
 
 	public DepartmentController(DepartmentService service) {
 		this.departmentService = service;
+	}
+
+	@GetMapping("/csrf-token")
+	public CsrfToken getCsrfToken(HttpServletRequest req) {
+		return (CsrfToken) req.getAttribute("_csrf");
+	}
+
+	@GetMapping("/greet")
+	public String greet(HttpServletRequest req) {
+		return "Hi! " + req.getSession().getId();
 	}
 
 	@GetMapping("/departments")

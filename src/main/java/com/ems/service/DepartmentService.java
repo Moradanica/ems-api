@@ -20,7 +20,7 @@ public class DepartmentService {
 	DepartmentRepo departmentRepo;
 	DepartmentMapper mapper = new DepartmentMapper();
 
-	DepartmentService(DepartmentRepo repo) {
+	public DepartmentService(DepartmentRepo repo) {
 		this.departmentRepo = repo;
 	}
 
