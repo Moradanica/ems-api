@@ -1,5 +1,7 @@
 package com.ems.mapper;
 
+import java.util.stream.Collectors;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,7 @@ public class UserMapper {
 	}
 
 	public UserResponseDto mapToDto(User user) {
-		return UserResponseDto.builder().id(user.getId()).username(user.getUsername()).build();
+		return UserResponseDto.builder().id(user.getId()).username(user.getUsername())
+				.roles(user.getRoles().stream().map(r -> r.getName()).collect(Collectors.toSet())).build();
 	}
 }

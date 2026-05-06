@@ -1,5 +1,7 @@
 package com.ems.dto;
 
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,4 +15,5 @@ public class UserResponseDto {
 
 	private int id;
 	private String username;
+	private Set<String> roles;
 }
