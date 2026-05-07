@@ -10,11 +10,11 @@ import com.ems.security.UserPrincipal;
 import com.ems.repository.UserRepo;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
 	private UserRepo userRepo;
 
-	public MyUserDetailsService(UserRepo userRepo) {
+	public CustomUserDetailsService(UserRepo userRepo) {
 		this.userRepo = userRepo;
 	}
 
