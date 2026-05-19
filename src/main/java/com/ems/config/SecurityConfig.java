@@ -14,21 +14,21 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-	private UserDetailsService userDetailsService;
+//	private UserDetailsService userDetailsService;
+//
+//	public SecurityConfig(UserDetailsService userDetailsService) {
+//		this.userDetailsService = userDetailsService;
+//	}
 
-	public SecurityConfig(UserDetailsService userDetailsService) {
-		this.userDetailsService = userDetailsService;
-	}
-
-	@Bean
-	AuthenticationProvider authProvider() {
-
-		DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
-//		provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
-		provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
-
-		return provider;
-	}
+//	@Bean
+//	AuthenticationProvider authProvider() {
+//
+//		DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
+////		provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+//		provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
+//
+//		return provider;
+//	}
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) {
@@ -37,8 +37,8 @@ public class SecurityConfig {
 		http.csrf(customizer -> customizer.disable())
 				.authorizeHttpRequests(request -> request.anyRequest().authenticated())
 				.httpBasic(Customizer.withDefaults())
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-//		http.authorizeHttpRequests(request -> request.anyRequest().hasRole("ADMIN"));
+				.sessionManagement(session -> session.sessionCreationPolicy(
+						SessionCreationPolicy.STATELESS));
 		return http.build();
 	}
 

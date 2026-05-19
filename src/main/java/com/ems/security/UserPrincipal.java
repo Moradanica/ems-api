@@ -13,6 +13,10 @@ import com.ems.entity.User;
 
 public class UserPrincipal implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private User user;
 
 	public UserPrincipal(User user) {
@@ -25,8 +29,6 @@ public class UserPrincipal implements UserDetails {
 
 		return user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName()))
 				.collect(Collectors.toSet());
-		
-		
 	}
 
 	@Override
